@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% extends "product/base.html" %}
+{% block body_block %}
+    <meta charset="UTF-8">
+    <title>home</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+<body>
+<h1 align="center">Products Lists</h1>
+<br>
+<br>
+
+<form method="post">
+    {% csrf_token %}
+    {{search.as_p}}
+
+    <input type="submit" value="search">
+    <h3>{{msg}}</h3>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-4"></div>
+
+            <div class="col-4">
+                {% for product in products%}
+
+                <div class="card" style="width: 18rem;">
+
+                    <img src="{{product.image.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">{{product.price}}
+                            <a href="{% url 'buy' product.id %}" class="btn btn-primary">BUY NOW</a>
+
+                        </p>
+                    </div>
+                </div>
+                   {% endfor %}
+
+
+            </div>
+                   <div class="col-4"></div>
+
+             <div class="col-4"></div>
+
+        </div>
+
+    </div>
+
+
+
+
+</form>
+
+{% endblock %}

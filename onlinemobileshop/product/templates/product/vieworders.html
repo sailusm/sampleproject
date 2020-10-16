@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "product/adminhome.html" %}
+{% block body_block %}
+<form>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-4"></div>
+
+            <div class="col-4">
+
+
+                {% for order in orders %}
+                NAME: {{order.personname}}
+                <BR>
+                ADDRESS:{{order.address}}
+
+                <BR>
+                PHONE NUMBER:{{order.phone}}
+                <BR>
+                EMAIL:{{order.email}}
+                <BR>
+                PRODUCT ID:<a href="{% url 'buy' order.productid %}">{{order.productid}}</a>
+                <br>
+                ORDER STATUS:{{order.status}}
+                <BR>
+                <a href="{% url 'orderupdate' order.id  %}">View this Order</a>
+                <BR>
+                {% endfor %}
+                <br>
+
+            </div>
+
+    </div>
+    </div>
+
+</form>
+{% endblock %}
